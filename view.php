@@ -16,7 +16,6 @@ $embedcode = get_config('local_userembed', 'embedcode');
 echo $OUTPUT->header();
 
 if (!empty($embedcode)) {
-    // ⚠️ noclean = true libera HTML/JS — confie apenas em admins.
     echo format_text($embedcode, FORMAT_HTML, ['noclean' => true]);
 } else {
     echo $OUTPUT->notification(get_string('noembed', 'local_userembed'), 'info');
