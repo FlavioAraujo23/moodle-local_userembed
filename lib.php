@@ -8,10 +8,11 @@ function local_userembed_user_profile_view($user, $course)
     }
 
     if (has_capability('local/userembed:viewembed', context_system::instance())) {
-        $url = new moodle_url('/local/userembed/view.php', ['id' => $user->id]);
-        echo html_writer::link($url, get_string('viewembed', 'local_userembed'));
-        if (get_config('showinprofile')) {
+        if (get_config('local_userembed', 'showinprofile')) {
             if (isloggedin() && !isguestuser()) {
+                global $USER;
+
+                $url = new moodle_url('/local/userembed/view.php', ['id' => $USER->id]);
                 $navigation->add(
                     get_string('linknameinmenuprofile', 'local_userembed'),
                     $url,
