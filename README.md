@@ -1,0 +1,165 @@
+# Local UserEmbed Plugin for Moodle
+
+## Descrição
+
+O **Local UserEmbed** é um plugin para Moodle que permite aos administradores configurar e exibir conteúdo incorporado (embed) globalmente para usuários autorizados. O plugin adiciona funcionalidades para incorporar dashboards, relatórios ou qualquer conteúdo via iframe/script no ambiente Moodle.
+
+## Características
+
+- ✅ **Conteúdo Embed Global**: Permite configurar um código embed que será exibido para todos os usuários autorizados
+- ✅ **Controle de Permissões**: Utiliza o sistema de capacidades do Moodle para controlar quem pode visualizar o conteúdo
+- ✅ **Integração com Perfil**: Opção de adicionar link no perfil do usuário
+- ✅ **Configuração Flexível**: Suporta qualquer tipo de código embed (iframe, script, etc.)
+- ✅ **Multilíngue**: Suporte para português brasileiro e inglês
+- ✅ **Compatibilidade**: Moodle 4.0+
+
+## Instalação
+
+### Método 1: Upload via Interface Web
+
+1. Faça download do plugin ou crie um arquivo ZIP com todos os arquivos
+2. Acesse **Administração do Site > Plugins > Instalar plugins**
+3. Faça upload do arquivo ZIP
+4. Siga as instruções na tela para completar a instalação
+
+### Método 2: Instalação Manual
+
+1. Extraia os arquivos na pasta `/local/userembed/` do seu Moodle
+2. Acesse **Administração do Site > Notificações**
+3. Execute o processo de atualização do banco de dados
+
+## Estrutura do Plugin
+
+```
+local/userembed/
+├── db/
+│   └── access.php          # Definições de capacidades
+├── lang/
+│   ├── en/
+│   │   └── local_userembed.php    # Strings em inglês
+│   └── pt_br/
+│       └── local_userembed.php    # Strings em português
+├── lib.php                 # Funções principais e hooks
+├── settings.php           # Configurações administrativas
+├── version.php           # Informações da versão
+├── view.php             # Página de visualização do embed
+└── .gitignore          # Arquivos ignorados pelo Git
+```
+
+## Configuração
+
+### 1. Configurações Administrativas
+
+Acesse **Administração do Site > Plugins > Plugins Locais > Global Embed**
+
+#### Código Embed
+- **Campo**: Área de texto grande para inserir o código embed
+- **Formato**: Aceita HTML, iframe, JavaScript, etc.
+- **Exemplo**:
+```html
+<iframe src="https://example.com/dashboard" 
+        width="100%" 
+        height="600" 
+        frameborder="0">
+</iframe>
+```
+
+#### Exibir Link no Perfil
+- **Opção**: Checkbox para habilitar/desabilitar
+- **Função**: Adiciona um link "Ver Dashboard" no perfil dos usuários autorizados
+- **Padrão**: Habilitado
+
+### 2. Permissões
+
+O plugin cria a capacidade `local/userembed:viewembed` que controla quem pode visualizar o conteúdo embed.
+
+#### Configuração de Permissões:
+1. Acesse **Administração do Site > Usuários > Permissões > Definir papéis**
+2. Selecione o papel desejado (ex: Manager, Teacher, etc.)
+3. Procure por "View embedded content"
+4. Configure como **Permitir**
+
+#### Papéis com Acesso Padrão:
+- **Admin**: Acesso automático
+- **Outros papéis**: Precisam ser configurados manualmente
+
+## Utilização
+
+### Para Administradores
+
+1. **Configurar Embed**:
+   - Vá para as configurações do plugin
+   - Cole o código embed desejado
+   - Salve as configurações
+
+2. **Gerenciar Permissões**:
+   - Configure quais papéis podem visualizar o conteúdo
+   - Teste com diferentes usuários
+
+### Para Usuários
+
+1. **Via Perfil**:
+   - Acesse seu perfil de usuário
+   - Clique em "Ver Dashboard" (se habilitado)
+
+2. **Via URL Direta**:
+   - Acesse: `/local/userembed/view.php?id=USER_ID`
+   - Substitua `USER_ID` pelo ID do usuário
+
+## Exemplos de Uso
+
+### Dashboard do Power BI
+```html
+<iframe width="100%" height="600" 
+        src="https://app.powerbi.com/view?r=YOUR_REPORT_ID" 
+        frameborder="0" allowFullScreen="true">
+</iframe>
+```
+
+### Google Data Studio
+```html
+<iframe width="100%" height="600" 
+        src="https://datastudio.google.com/embed/reporting/YOUR_REPORT_ID" 
+        frameborder="0" allowfullscreen>
+</iframe>
+```
+
+
+## Troubleshooting
+
+### Problemas Comuns
+
+1. **"No embed code configured"**
+   - **Causa**: Nenhum código embed foi configurado
+   - **Solução**: Acesse as configurações e adicione o código embed
+
+2. **Usuário não consegue ver o conteúdo**
+   - **Causa**: Usuário não tem a permissão necessária
+   - **Solução**: Configure a capacidade `local/userembed:viewembed` para o papel do usuário
+
+3. **Link não aparece no perfil**
+   - **Causa**: Opção "Exibir link no perfil" desabilitada
+   - **Solução**: Habilite a opção nas configurações do plugin
+
+4. **Iframe não carrega**
+   - **Causa**: Possível bloqueio por CORS ou X-Frame-Options
+   - **Solução**: Verifique se o site permite incorporação via iframe
+
+
+
+## Licença
+
+Este plugin segue a licença do Moodle (GPL v3).
+
+## Contribuição
+
+Contribuições são bem-vindas! Para contribuir:
+1. Fork o projeto
+2. Crie uma branch para sua feature
+3. Commit suas mudanças
+4. Push para a branch
+5. Abra um Pull Request
+
+---
+
+**Desenvolvido para Moodle 4.0+** | **Versão Estável**
