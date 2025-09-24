@@ -24,6 +24,7 @@
 
 $string['pluginname'] = 'Embed Global';
 $string['viewembed'] = 'Ver conteúdo embed';
+$string['userembed:viewembed'] = 'Visualizar conteúdo incorporado';
 $string['noembed'] = 'Nenhum código embed configurado.';
 $string['embedcode'] = 'Código embed';
 $string['embedcode_desc'] = 'Informe o código embed (iframe, script, etc.) que será exibido para usuários com permissão.';
