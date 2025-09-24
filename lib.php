@@ -23,13 +23,20 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
+/**
+ * Add dashboard link to user profile navigation.
+ *
+ * @param \core_user\output\myprofile\tree $tree The myprofile tree.
+ * @param stdClass $user The user object.
+ * @param bool $iscurrentuser Whether viewing own profile.
+ * @param stdClass $course The course being viewed.
+ */
 function local_userembed_myprofile_navigation(core_user\output\myprofile\tree $tree, $user)
 {
     if (
         has_capability('local/userembed:viewembed', context_system::instance()) &&
         get_config('local_userembed', 'showinprofile')
     ) {
-
         $url = new moodle_url('/local/userembed/view.php', ['id' => $user->id]);
         $node = new core_user\output\myprofile\node(
             'miscellaneous',
