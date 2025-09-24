@@ -27,10 +27,9 @@
  *
  * @param \core_user\output\myprofile\tree $tree The myprofile tree.
  * @param stdClass $user The user object.
- * @param bool $iscurrentuser Whether viewing own profile.
- * @param stdClass $course The course being viewed.
+ * @return void
  */
-function local_userembed_myprofile_navigation(core_user\output\myprofile\tree $tree, $user){
+function local_userembed_myprofile_navigation(core_user\output\myprofile\tree $tree, $user) {
     if (
         has_capability('local/userembed:viewembed', context_system::instance()) &&
         get_config('local_userembed', 'showinprofile')
