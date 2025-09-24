@@ -30,16 +30,13 @@ namespace local_userembed\privacy;
  *
  * This plugin does not store any personal data.
  */
-class provider implements \core_privacy\local\metadata\null_provider
-{
-
+class provider implements \core_privacy\local\metadata\null_provider {
     /**
      * Get the reason why this plugin stores no personal data.
      *
      * @return string
      */
-    public static function get_reason(): string
-    {
+    public static function get_reason(): string {
         return get_string('privacy:metadata', 'local_userembed');
     }
 }
