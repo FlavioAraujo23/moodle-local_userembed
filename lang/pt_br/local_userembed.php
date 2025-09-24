@@ -31,3 +31,4 @@ $string['embedcode_desc'] = 'Informe o código embed (iframe, script, etc.) que 
 $string['showinprofile'] = 'Exibir link no perfil';
 $string['showinprofile_desc'] = 'Se habilitado, exibirá no perfil do usuário um link para o embed global.';
 $string['linknameinmenuprofile'] = 'Ver Dashboard';
+$string['privacy:metadata'] = 'Este plugin não armazena dados pessoais. Ele apenas exibe conteúdo externo incorporado configurado pelos administradores, sem coletar, processar ou salvar informações de usuários.';
