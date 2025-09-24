@@ -1,165 +1,219 @@
-# Local UserEmbed Plugin for Moodle
+# Global Embed Plugin for Moodle
 
-## Descrição
+## Description
 
-O **Local UserEmbed** é um plugin para Moodle que permite aos administradores configurar e exibir conteúdo incorporado (embed) globalmente para usuários autorizados. O plugin adiciona funcionalidades para incorporar dashboards, relatórios ou qualquer conteúdo via iframe/script no ambiente Moodle.
+The **Global Embed** is a Moodle plugin that allows administrators to configure and display embedded content globally for authorized users. The plugin adds functionality to embed dashboards, reports, or any content via iframe/script within the Moodle environment.
 
-## Características
+## Features
 
-- ✅ **Conteúdo Embed Global**: Permite configurar um código embed que será exibido para todos os usuários autorizados
-- ✅ **Controle de Permissões**: Utiliza o sistema de capacidades do Moodle para controlar quem pode visualizar o conteúdo
-- ✅ **Integração com Perfil**: Opção de adicionar link no perfil do usuário
-- ✅ **Configuração Flexível**: Suporta qualquer tipo de código embed (iframe, script, etc.)
-- ✅ **Multilíngue**: Suporte para português brasileiro e inglês
-- ✅ **Compatibilidade**: Moodle 4.0+
+- ✅ **Global Embed Content**: Configure an embed code that will be displayed to all authorized users
+- ✅ **Permission Control**: Uses Moodle's capability system to control who can view the content
+- ✅ **Profile Integration**: Option to add a link in the user profile
+- ✅ **Flexible Configuration**: Supports any type of embed code (iframe, script, etc.)
+- ✅ **Multilingual**: Support for Portuguese (Brazil) and English
+- ✅ **Compatibility**: Moodle 4.0+
 
-## Instalação
+## Installation
 
-### Método 1: Upload via Interface Web
+### Method 1: Upload via Web Interface
 
-1. Faça download do plugin ou crie um arquivo ZIP com todos os arquivos
-2. Acesse **Administração do Site > Plugins > Instalar plugins**
-3. Faça upload do arquivo ZIP
-4. Siga as instruções na tela para completar a instalação
+1. Download the plugin or create a ZIP file with all files
+2. Go to **Site Administration > Plugins > Install plugins**
+3. Upload the ZIP file
+4. Follow the on-screen instructions to complete the installation
 
-### Método 2: Instalação Manual
+### Method 2: Manual Installation
 
-1. Extraia os arquivos na pasta `/local/userembed/` do seu Moodle
-2. Acesse **Administração do Site > Notificações**
-3. Execute o processo de atualização do banco de dados
+1. Extract the files to the `/local/userembed/` folder of your Moodle
+2. Go to **Site Administration > Notifications**
+3. Run the database upgrade process
 
-## Estrutura do Plugin
+## Plugin Structure
 
 ```
 local/userembed/
 ├── db/
-│   └── access.php          # Definições de capacidades
+│   └── access.php          # Capability definitions
 ├── lang/
 │   ├── en/
-│   │   └── local_userembed.php    # Strings em inglês
+│   │   └── local_userembed.php    # English strings
 │   └── pt_br/
-│       └── local_userembed.php    # Strings em português
-├── lib.php                 # Funções principais e hooks
-├── settings.php           # Configurações administrativas
-├── version.php           # Informações da versão
-├── view.php             # Página de visualização do embed
-└── .gitignore          # Arquivos ignorados pelo Git
+│       └── local_userembed.php    # Portuguese strings
+├── lib.php                 # Main functions and hooks
+├── settings.php           # Administrative settings
+├── version.php           # Version information
+├── view.php             # Embed viewing page
+└── .gitignore          # Git ignored files
 ```
 
-## Configuração
+## Configuration
 
-### 1. Configurações Administrativas
+### 1. Administrative Settings
 
-Acesse **Administração do Site > Plugins > Plugins Locais > Global Embed**
+Go to **Site Administration > Plugins > Local plugins > Global Embed**
 
-#### Código Embed
-- **Campo**: Área de texto grande para inserir o código embed
-- **Formato**: Aceita HTML, iframe, JavaScript, etc.
-- **Exemplo**:
+#### Embed Code
+
+- **Field**: Large text area to insert the embed code
+- **Format**: Accepts HTML, iframe, JavaScript, etc.
+- **Example**:
+
 ```html
-<iframe src="https://example.com/dashboard" 
-        width="100%" 
-        height="600" 
-        frameborder="0">
+<iframe
+  src="https://example.com/dashboard"
+  width="100%"
+  height="600"
+  frameborder="0"
+>
 </iframe>
 ```
 
-#### Exibir Link no Perfil
-- **Opção**: Checkbox para habilitar/desabilitar
-- **Função**: Adiciona um link "Ver Dashboard" no perfil dos usuários autorizados
-- **Padrão**: Habilitado
+#### Show Profile Link
 
-### 2. Permissões
+- **Option**: Checkbox to enable/disable
+- **Function**: Adds a "View Dashboard" link in authorized users' profiles
+- **Default**: Enabled
 
-O plugin cria a capacidade `local/userembed:viewembed` que controla quem pode visualizar o conteúdo embed.
+### 2. Permissions
 
-#### Configuração de Permissões:
-1. Acesse **Administração do Site > Usuários > Permissões > Definir papéis**
-2. Selecione o papel desejado (ex: Manager, Teacher, etc.)
-3. Procure por "View embedded content"
-4. Configure como **Permitir**
+The plugin creates the `local/userembed:viewembed` capability that controls who can view the embedded content.
 
-#### Papéis com Acesso Padrão:
-- **Admin**: Acesso automático
-- **Outros papéis**: Precisam ser configurados manualmente
+#### Permission Configuration:
 
-## Utilização
+1. Go to **Site Administration > Users > Permissions > Define roles**
+2. Select the desired role (e.g., Manager, Teacher, etc.)
+3. Search for "View embedded content"
+4. Configure as **Allow**
 
-### Para Administradores
+#### Roles with Default Access:
 
-1. **Configurar Embed**:
-   - Vá para as configurações do plugin
-   - Cole o código embed desejado
-   - Salve as configurações
+- **Manager**: Automatic access
+- **Other roles**: Need to be configured manually
 
-2. **Gerenciar Permissões**:
-   - Configure quais papéis podem visualizar o conteúdo
-   - Teste com diferentes usuários
+## Usage
 
-### Para Usuários
+### For Administrators
 
-1. **Via Perfil**:
-   - Acesse seu perfil de usuário
-   - Clique em "Ver Dashboard" (se habilitado)
+1. **Configure Embed**:
 
-2. **Via URL Direta**:
-   - Acesse: `/local/userembed/view.php?id=USER_ID`
-   - Substitua `USER_ID` pelo ID do usuário
+   - Go to plugin settings
+   - Paste the desired embed code
+   - Save settings
 
-## Exemplos de Uso
+2. **Manage Permissions**:
+   - Configure which roles can view the content
+   - Test with different users
 
-### Dashboard do Power BI
+### For Users
+
+1. **Via Profile**:
+
+   - Access your user profile
+   - Click "View Dashboard" (if enabled)
+
+2. **Via Direct URL**:
+   - Access: `/local/userembed/view.php?id=USER_ID`
+   - Replace `USER_ID` with the user ID
+
+## Usage Examples
+
+### Power BI Dashboard
+
 ```html
-<iframe width="100%" height="600" 
-        src="https://app.powerbi.com/view?r=YOUR_REPORT_ID" 
-        frameborder="0" allowFullScreen="true">
+<iframe
+  width="100%"
+  height="600"
+  src="https://app.powerbi.com/view?r=YOUR_REPORT_ID"
+  frameborder="0"
+  allowfullscreen="true"
+>
 </iframe>
 ```
-
-### Google Data Studio
-```html
-<iframe width="100%" height="600" 
-        src="https://datastudio.google.com/embed/reporting/YOUR_REPORT_ID" 
-        frameborder="0" allowfullscreen>
-</iframe>
-```
-
 
 ## Troubleshooting
 
-### Problemas Comuns
+### Common Issues
 
 1. **"No embed code configured"**
-   - **Causa**: Nenhum código embed foi configurado
-   - **Solução**: Acesse as configurações e adicione o código embed
 
-2. **Usuário não consegue ver o conteúdo**
-   - **Causa**: Usuário não tem a permissão necessária
-   - **Solução**: Configure a capacidade `local/userembed:viewembed` para o papel do usuário
+   - **Cause**: No embed code has been configured
+   - **Solution**: Go to settings and add the embed code
 
-3. **Link não aparece no perfil**
-   - **Causa**: Opção "Exibir link no perfil" desabilitada
-   - **Solução**: Habilite a opção nas configurações do plugin
+2. **User cannot see the content**
 
-4. **Iframe não carrega**
-   - **Causa**: Possível bloqueio por CORS ou X-Frame-Options
-   - **Solução**: Verifique se o site permite incorporação via iframe
+   - **Cause**: User doesn't have the necessary permission
+   - **Solution**: Configure the `local/userembed:viewembed` capability for the user's role
 
+3. **Link doesn't appear in profile**
 
+   - **Cause**: "Show profile link" option is disabled
+   - **Solution**: Enable the option in plugin settings
 
-## Licença
+4. **Iframe doesn't load**
+   - **Cause**: Possible blocking by CORS or X-Frame-Options
+   - **Solution**: Check if the site allows iframe embedding
 
-Este plugin segue a licença do Moodle (GPL v3).
+### Logs and Debugging
 
-## Contribuição
+To debug issues:
 
-Contribuições são bem-vindas! Para contribuir:
-1. Fork o projeto
-2. Crie uma branch para sua feature
-3. Commit suas mudanças
-4. Push para a branch
-5. Abra um Pull Request
+1. **Enable Debug in Moodle**:
 
----
+   ```php
+   // In config.php
+   $CFG->debug = DEBUG_DEVELOPER;
+   $CFG->debugdisplay = 1;
+   ```
 
-**Desenvolvido para Moodle 4.0+** | **Versão Estável**
+2. **Check Logs**:
+   - Go to **Site Administration > Reports > Logs**
+   - Filter by user and plugin-related activity
+
+## Security
+
+### Important Considerations
+
+1. **Content Validation**: The plugin accepts raw HTML - be careful with inserted content
+2. **Permissions**: Always configure permissions appropriately
+3. **HTTPS**: Always use secure connections for external content
+4. **CSP (Content Security Policy)**: May need to adjust security policies
+
+### Recommendations
+
+- Test all embed code before applying in production
+- Regularly monitor who has access to content
+- Keep the plugin updated
+- Use trusted sources for embed content
+
+## Development
+
+### Requirements
+
+- PHP 7.4+
+- Moodle 4.0+
+- Basic Moodle development knowledge
+
+## Support
+
+For support and questions:
+
+1. Check the complete documentation
+2. Consult the troubleshooting section
+3. Check Moodle logs
+4. Contact the system administrator
+
+## License
+
+This plugin follows the Moodle license (GPL v3).
+
+## Contributing
+
+Contributions are welcome! To contribute:
+
+1. Fork the project
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+**Developed for Moodle 4.0+** | **Stable Version**

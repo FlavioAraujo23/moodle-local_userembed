@@ -23,7 +23,7 @@ if ($hassiteconfig) {
 
     $ADMIN->add('localplugins', $settings);
 
-    // Força adicionar no usermenu se ainda não existir
+    // Force add to usermenu if it doesn't already exist
     $usermenu = get_config('core_admin', 'usermenuitems');
     if (strpos($usermenu, 'local_userembed|/local/userembed/view.php') === false) {
         set_config(

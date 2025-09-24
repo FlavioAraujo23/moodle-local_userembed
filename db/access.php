@@ -6,7 +6,7 @@ $capabilities = [
         'captype' => 'read',
         'contextlevel' => CONTEXT_SYSTEM,
         'archetypes' => [
-            'manager' => CAP_ALLOW,   // Admins já terão acesso
+            'manager' => CAP_ALLOW,   // Admins will now have access
         ],
     ],
 ];
