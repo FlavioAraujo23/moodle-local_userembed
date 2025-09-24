@@ -16,13 +16,12 @@
 
 /**
  * Library functions and hooks for Local UserEmbed plugin.
- * 
+ *
  * @package    local_userembed
  * @copyright  2025 Flávio Araújo <flaviolopes1027@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
 /**
  * Add dashboard link to user profile navigation.
  *
@@ -31,8 +30,7 @@ defined('MOODLE_INTERNAL') || die();
  * @param bool $iscurrentuser Whether viewing own profile.
  * @param stdClass $course The course being viewed.
  */
-function local_userembed_myprofile_navigation(core_user\output\myprofile\tree $tree, $user)
-{
+function local_userembed_myprofile_navigation(core_user\output\myprofile\tree $tree, $user){
     if (
         has_capability('local/userembed:viewembed', context_system::instance()) &&
         get_config('local_userembed', 'showinprofile')
